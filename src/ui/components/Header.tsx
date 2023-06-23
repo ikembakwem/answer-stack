@@ -1,5 +1,5 @@
 import { UserIcon } from "./Icon";
-import "./Header.css";
+import classes from "./Header.module.css";
 
 export const Header = () => {
   const handleSearchInput = (
@@ -8,7 +8,7 @@ export const Header = () => {
     console.log(e.currentTarget.value);
   };
   return (
-    <div className="container">
+    <div className={classes.container}>
       <a href="./">Answer Stack</a>
       <input
         type="text"
