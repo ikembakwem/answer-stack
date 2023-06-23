@@ -1,4 +1,4 @@
-import { QuestionData } from "./QuestionsData";
+import { QuestionData } from "../../QuestionsData";
 import { FC } from "react";
 
 interface Props {

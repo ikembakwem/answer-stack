@@ -1,5 +1,5 @@
-import { Header } from "./Header";
-import { HomePage } from "./HomePage";
+import { Header } from "./ui/components/Header";
+import { HomePage } from "./ui/pages/HomePage";
 import "./App.css";
 
 function App() {

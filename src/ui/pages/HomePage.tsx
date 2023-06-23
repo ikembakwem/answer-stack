@@ -1,7 +1,7 @@
-import { getUnansweredQuestions } from "./QuestionsData";
-import { QuestionList } from "./QuestionList";
+import { getUnansweredQuestions } from "../../QuestionsData";
+import { QuestionList } from "../components/QuestionList";
 import { Page } from "./Page";
-import { PageTitle } from "./PageTitle";
+import { PageTitle } from "../components/PageTitle";
 
 export const HomePage = () => (
   <Page>
