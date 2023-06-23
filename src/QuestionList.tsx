@@ -4,13 +4,21 @@ import { Question } from "./Question";
 
 interface Props {
   data: QuestionData[];
+  renderItem?: (item: QuestionData) => JSX.Element;
 }
 
-export const QuestionList: FC<Props> = ({ data }) => (
+export const QuestionList: FC<Props> = ({
+  data,
+  renderItem,
+}) => (
   <ul>
     {data.map((question) => (
       <li key={question.questionId}>
-        <Question data={question} />
+        {renderItem ? (
+          renderItem(question)
+        ) : (
+          <Question data={question} />
+        )}
       </li>
     ))}
   </ul>
