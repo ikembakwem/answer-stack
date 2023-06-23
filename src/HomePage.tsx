@@ -1,8 +1,14 @@
+import { getUnansweredQuestions } from "./QuestionsData";
+import { QuestionList } from "./QuestionList";
+import { Page } from "./Page";
+import { PageTitle } from "./PageTitle";
+
 export const HomePage = () => (
-  <div>
+  <Page>
     <div>
-      <h2>Unanswered Questions</h2>
+      <PageTitle>Unanswered Questions</PageTitle>
       <button>Ask a question</button>
     </div>
-  </div>
+    <QuestionList data={getUnansweredQuestions()} />
+  </Page>
 );
