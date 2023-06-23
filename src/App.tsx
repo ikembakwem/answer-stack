@@ -1,8 +1,13 @@
+import { Header } from "./Header";
+import { HomePage } from "./HomePage";
+import "./App.css";
+
 function App() {
   return (
-    <>
-      <h1>Hello World!</h1>
-    </>
+    <div className="App">
+      <Header />
+      <HomePage />
+    </div>
   );
 }
 
