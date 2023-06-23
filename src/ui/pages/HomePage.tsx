@@ -26,11 +26,17 @@ export const HomePage = () => {
     doGetUnansweredQuestions();
   }, []);
 
+  const handleAskQuestion = () => {
+    console.log("TODO - navigate to the AskPage");
+  };
+
   return (
     <Page>
       <div>
         <PageTitle>Unanswered Questions</PageTitle>
-        <button>Ask a question</button>
+        <button onClick={handleAskQuestion}>
+          Ask a question
+        </button>
       </div>
       {questionsLoading ? (
         <div>Loading...</div>
