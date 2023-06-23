@@ -1,4 +1,6 @@
 import { UserIcon } from "./Icon";
+import "./Header.css";
+
 export const Header = () => {
   const handleSearchInput = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -6,7 +8,7 @@ export const Header = () => {
     console.log(e.currentTarget.value);
   };
   return (
-    <div>
+    <div className="container">
       <a href="./">Answer Stack</a>
       <input
         type="text"
