@@ -23,6 +23,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: rgb(14, 14, 75);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: rgb(39, 39, 42);
