@@ -6,6 +6,8 @@ import { QuestionList } from "../components/QuestionList";
 import { Page } from "./Page";
 import { PageTitle } from "../components/PageTitle";
 import { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import { PrimaryButton } from "../../Styles";
 
 export const HomePage = () => {
   const [questions, setQuestions] = useState<
@@ -32,12 +34,12 @@ export const HomePage = () => {
 
   return (
     <Page>
-      <div>
+      <Container>
         <PageTitle>Unanswered Questions</PageTitle>
-        <button onClick={handleAskQuestion}>
+        <PrimaryButton onClick={handleAskQuestion}>
           Ask a question
-        </button>
-      </div>
+        </PrimaryButton>
+      </Container>
       {questionsLoading ? (
         <div>Loading...</div>
       ) : (
@@ -46,3 +48,9 @@ export const HomePage = () => {
     </Page>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

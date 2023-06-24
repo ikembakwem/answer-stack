@@ -16,7 +16,6 @@ const Wrapper = styled.div`
   font-family: ${fontfamily};
   font-size: ${fontSize};
   color: ${gray2};
-  text-align: center;
 `;
 
 export default App;

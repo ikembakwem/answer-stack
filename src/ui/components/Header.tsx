@@ -14,14 +14,15 @@ export const Header = () => {
   return (
     <Wrapper>
       <LogoLink href="./">Answer Stack</LogoLink>
-
-      <SearchBox>
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={handleSearchInput}
-        />
-      </SearchBox>
+      <SearchContainer>
+        <SearchBox>
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={handleSearchInput}
+          />
+        </SearchBox>
+      </SearchContainer>
 
       <NavLink label="Sign In" url="/signin">
         <UserIcon></UserIcon>
@@ -41,4 +42,11 @@ const Wrapper = styled.div`
   background-color: #fff;
   border-bottom: 1px solid ${gray5};
   box-shadow: 0 3px 7px 0 rgba(110, 112, 114, 0.21);
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 `;

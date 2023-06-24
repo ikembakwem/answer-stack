@@ -28,6 +28,11 @@ a {
   color: rgb(14, 14, 75);
 }
 
+ol,
+ul {
+  list-style: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: rgb(39, 39, 42);
