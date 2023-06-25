@@ -1,0 +1,32 @@
+{
+  "env": {
+    "es2020": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommend",
+    "plugin:import/errors",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "settings": { "react": { "version": "detect" } },
+  "plugins": [
+    "react-refresh",
+    "react",
+    "import",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "react/proptypes": 0,
+    "react/react-in-jsx-scope": 0,
+    "react-refresh/only-export-components": "warn"
+  }
+}
