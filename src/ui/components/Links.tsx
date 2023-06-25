@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
-import { FC, ReactNode } from "react";
+import {
+  ComponentProps,
+  FC,
+  ReactNode,
+  forwardRef,
+} from "react";
 import {
   fontSize,
   fontfamily,
@@ -8,24 +13,25 @@ import {
   gray5,
 } from "../../Styles";
 
-interface Props {
+interface LinkProps extends ComponentProps<"a"> {
   url: string;
   children?: ReactNode;
-  label: string;
+  label?: string;
 }
 
-export const NavLink: FC<Props> = ({
+export const NavLink: FC<LinkProps> = ({
   url,
   children,
   label,
+  ...props
 }) => (
-  <Wrapper href={url}>
+  <LinkStyles href={url} {...props}>
     {children}
     <span>{label}</span>
-  </Wrapper>
+  </LinkStyles>
 );
 
-const Wrapper = styled.a`
+const LinkStyles = styled.a`
   font-family: ${fontfamily};
   font-size: ${fontSize};
   background-color: transparent;

@@ -7,7 +7,7 @@ import { Page } from "./Page";
 import { PageTitle } from "../components/PageTitle";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { PrimaryButton } from "../../Styles";
+import { Button } from "../components/Buttons";
 
 export const HomePage = () => {
   const [questions, setQuestions] = useState<
@@ -36,9 +36,9 @@ export const HomePage = () => {
     <Page>
       <Container>
         <PageTitle>Unanswered Questions</PageTitle>
-        <PrimaryButton onClick={handleAskQuestion}>
+        <Button onClick={handleAskQuestion}>
           Ask a question
-        </PrimaryButton>
+        </Button>
       </Container>
       {questionsLoading ? (
         <div>Loading...</div>

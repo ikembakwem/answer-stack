@@ -15,18 +15,17 @@ export const Header = () => {
     <Wrapper>
       <LogoLink href="./">Answer Stack</LogoLink>
       <SearchContainer>
-        <SearchBox>
-          <input
-            type="text"
-            placeholder="Search..."
-            onChange={handleSearchInput}
-          />
-        </SearchBox>
+        <SearchBox
+          type="text"
+          placeholder="Search..."
+          onChange={handleSearchInput}
+        />
       </SearchContainer>
 
       <NavLink label="Sign In" url="/signin">
         <UserIcon></UserIcon>
       </NavLink>
+      <NavLink label="Sign up" url="/register" />
     </Wrapper>
   );
 };
