@@ -5,11 +5,11 @@ import {
 import { QuestionList } from "../components/QuestionList";
 import { Page } from "./Page";
 import { PageTitle } from "../components/PageTitle";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Button } from "../components/Buttons";
 
-export const HomePage = () => {
+export const HomePage: FC = () => {
   const [questions, setQuestions] = useState<
     QuestionData[]
   >([]);
