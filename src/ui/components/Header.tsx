@@ -13,7 +13,7 @@ export const Header = () => {
   };
   return (
     <Wrapper>
-      <LogoLink href="./">Answer Stack</LogoLink>
+      <LogoLink to="/">Answer Stack</LogoLink>
       <SearchContainer>
         <SearchBox
           type="text"
@@ -22,10 +22,11 @@ export const Header = () => {
         />
       </SearchContainer>
 
-      <NavLink label="Sign In" url="/signin">
+      <NavLink to="/signin">
         <UserIcon></UserIcon>
+        Sign in
       </NavLink>
-      <NavLink label="Sign up" url="/register" />
+      <NavLink to="/register">Sign up</NavLink>
     </Wrapper>
   );
 };
