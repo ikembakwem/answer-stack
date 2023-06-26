@@ -75,3 +75,18 @@ export const getQuestion = async (
   );
   return results.length === 0 ? null : results[0];
 };
+
+export const searchQuestion = async (
+  criteria: string
+): Promise<QuestionData[]> => {
+  await wait(800);
+  return questions.filter(
+    (q) =>
+      q.title
+        .toLowerCase()
+        .indexOf(criteria.toLowerCase()) >= 0 ||
+      q.content
+        .toLowerCase()
+        .indexOf(criteria.toLowerCase()) >= 0
+  );
+};
