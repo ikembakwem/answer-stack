@@ -14,3 +14,9 @@ export const accent2 = "#efd197";
 export const fontfamily =
   "'Segoe UI', 'Helvetica Neue', 'sans-serif'";
 export const fontSize = "16px";
+
+export const AuthorAndTime = styled.div`
+  font-size: 12px;
+  font-style: italic;
+  color: ${gray3};
+`;

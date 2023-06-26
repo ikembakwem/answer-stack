@@ -6,7 +6,12 @@ import {
 } from "../../QuestionsData";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { gray3, gray6 } from "../../Styles";
+import {
+  AuthorAndTime,
+  gray3,
+  gray6,
+} from "../../Styles";
+import { AnswerList } from "../components/AnswerList";
 
 export const QuestionPage = () => {
   const [question, setQuestion] =
@@ -36,11 +41,14 @@ export const QuestionPage = () => {
         {question !== null && (
           <>
             <Content>{question.content}</Content>
-            <AuthorAndTime>
-              {`Asked by ${
-                question.userName
-              } on ${question.created.toLocaleDateString()} ${question.created.toLocaleTimeString()}`}
-            </AuthorAndTime>
+            <PaddingX>
+              <AuthorAndTime>
+                {`Asked by ${
+                  question.userName
+                } on ${question.created.toLocaleDateString()} ${question.created.toLocaleTimeString()}`}
+              </AuthorAndTime>
+            </PaddingX>
+            <AnswerList data={question.answers} />
           </>
         )}
       </Container>
@@ -48,11 +56,8 @@ export const QuestionPage = () => {
   );
 };
 
-const AuthorAndTime = styled.div`
-  margin-top: 10px;
-  font-size: 12px;
-  font-style: italic;
-  color: ${gray3};
+const PaddingX = styled.div`
+  padding: 10px 0;
 `;
 
 const Content = styled.p`

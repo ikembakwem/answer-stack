@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 import { QuestionData } from "../../QuestionsData";
 import { FC } from "react";
-import { gray2, gray3 } from "../../Styles";
+import {
+  AuthorAndTime,
+  gray2,
+  gray3,
+} from "../../Styles";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -53,10 +57,4 @@ const Content = styled.div`
 
 const QuestionLink = styled(Link)`
   color: ${gray2};
-`;
-
-const AuthorAndTime = styled.div`
-  font-size: 12px;
-  font-style: italic;
-  color: ${gray3};
 `;
