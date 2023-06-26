@@ -1,5 +1,8 @@
 import { Page } from "./Page";
+import { useParams } from "react-router";
 
-export const QuestionPage = () => (
-  <Page>Question Page</Page>
-);
+export const QuestionPage = () => {
+  const { questionId } = useParams();
+
+  return <Page>Question Page {questionId}</Page>;
+};

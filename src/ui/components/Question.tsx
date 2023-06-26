@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { QuestionData } from "../../QuestionsData";
 import { FC } from "react";
 import { gray2, gray3 } from "../../Styles";
+import { Link } from "react-router-dom";
 
 interface Props {
   data: QuestionData;
@@ -13,7 +14,13 @@ export const Question: FC<Props> = ({
   showContent = true,
 }) => (
   <Wrapper>
-    <Title>{data.title}</Title>
+    <Title>
+      <QuestionLink
+        to={`/questions/${data.questionId}`}
+      >
+        {data.title}
+      </QuestionLink>
+    </Title>
     {showContent && (
       <Content>
         {data.content.length > 50
@@ -41,6 +48,10 @@ const Title = styled.div`
 const Content = styled.div`
   padding-bottom: 10px;
   font-size: 15px;
+  color: ${gray2};
+`;
+
+const QuestionLink = styled(Link)`
   color: ${gray2};
 `;
 

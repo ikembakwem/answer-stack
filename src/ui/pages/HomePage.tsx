@@ -8,6 +8,7 @@ import { PageTitle } from "../components/PageTitle";
 import { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Button } from "../components/Buttons";
+import { useNavigate } from "react-router";
 
 export const HomePage: FC = () => {
   const [questions, setQuestions] = useState<
@@ -28,8 +29,10 @@ export const HomePage: FC = () => {
     doGetUnansweredQuestions();
   }, []);
 
+  const navigate = useNavigate();
+
   const handleAskQuestion = () => {
-    console.log("TODO - navigate to the AskPage");
+    navigate("ask");
   };
 
   return (
