@@ -64,3 +64,14 @@ function wait(ms: number): Promise<void> {
     setTimeout(resolve, ms)
   );
 }
+
+export const getQuestion = async (
+  questionId: number
+): Promise<QuestionData | null> => {
+  await wait(800);
+
+  const results = questions.filter(
+    (q) => q.questionId === questionId
+  );
+  return results.length === 0 ? null : results[0];
+};
