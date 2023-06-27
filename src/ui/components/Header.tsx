@@ -22,11 +22,11 @@ export const Header = () => {
         />
       </SearchContainer>
 
-      <NavLink to="/signin">
-        <UserIcon></UserIcon>
-        Sign in
+      <NavLink to="/search">
+        <UserIcon />
+        <span>Sign In</span>
       </NavLink>
-      <NavLink to="/register">Sign up</NavLink>
+      <NavLink to="/register">Sign Up</NavLink>
     </Wrapper>
   );
 };

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ComponentProps, FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import {
   fontSize,
   fontfamily,
@@ -7,62 +7,37 @@ import {
   gray2,
   gray5,
 } from "../../Styles";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  NavLink as RouterLink,
+} from "react-router-dom";
 
-interface LinkProps extends ComponentProps<"a"> {
-  url: string;
+interface NavLink3Props {
   children?: ReactNode;
-  label?: string;
+  to: string;
 }
 
-export const NavLink2: FC<LinkProps> = ({
-  url,
+export const NavLink = ({
   children,
-  label,
-  ...props
-}) => (
-  <LinkStyles href={url} {...props}>
-    {children}
-    <span>{label}</span>
-  </LinkStyles>
+  to,
+}: NavLink3Props) => (
+  <Styles to={to}>{children}</Styles>
 );
 
-const LinkStyles = styled.a`
+const Styles = styled(RouterLink)`
   font-family: ${fontfamily};
   font-size: ${fontSize};
   background-color: transparent;
   font-weight: 500;
   color: ${gray2};
   cursor: pointer;
-  line-height: 1.43;
+  line-height: 1.15;
   display: inline-flex;
   padding: 8px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 6px;
-  img {
-    width: 16px;
-    opacity: 0.6;
-  }
-
-  :focus {
-    outline-color: ${gray5};
-  }
-`;
-
-export const NavLink = styled(Link)`
-  font-family: ${fontfamily};
-  font-size: ${fontSize};
-  background-color: transparent;
-  font-weight: 500;
-  color: ${gray2};
-  cursor: pointer;
-  line-height: 1.43;
-  display: inline-flex;
-  padding: 8px;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  margin-left: 8px;
   img {
     width: 16px;
     opacity: 0.6;
