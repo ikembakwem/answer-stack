@@ -22,7 +22,7 @@ export const Header = () => {
         />
       </SearchContainer>
 
-      <NavLink to="/search">
+      <NavLink to="/login">
         <UserIcon />
         <span>Sign In</span>
       </NavLink>
