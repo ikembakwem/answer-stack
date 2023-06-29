@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Button } from "../components/Buttons";
 import { Page } from "./Page";
-import { useState, FormEvent } from "react";
+import { FormEvent } from "react";
 import { Input } from "../components/Input";
 
 type Data = {
@@ -19,14 +19,19 @@ const defaultData: Data = {
 };
 
 export const RegistrationPage = () => {
-  const [userData, setUserData] =
-    useState<Data>(defaultData);
-
   const handleSubmit = (
     e: FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    console.log("Submitted data", userData);
+    const formData = new FormData(e.currentTarget);
+    const contact = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      username: formData.get("username"),
+    } as Data;
+
+    console.log("Submitted details: ", contact);
   };
 
   return (
@@ -38,58 +43,35 @@ export const RegistrationPage = () => {
               First name
             </label>
             <Input
+              name="firstName"
               type="text"
               id="firstName"
-              value={userData.firstName}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  firstName: e.target.value,
-                })
-              }
             />
           </FieldStyle>
 
           <FieldStyle>
             <label htmlFor="lastName">Last name</label>
             <Input
+              name="lastName"
               type="text"
               id="lastName"
-              value={userData.lastName}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  lastName: e.target.value,
-                })
-              }
             />
           </FieldStyle>
           <FieldStyle>
             <label htmlFor="email">Email address</label>
             <Input
+              name="email"
               type="email"
               id="email"
-              value={userData.email}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  email: e.target.value,
-                })
-              }
             />
           </FieldStyle>
           <FieldStyle>
             <label htmlFor="username">Username</label>
             <Input
+              name="username"
               type="text"
               id="username"
-              value={userData.username}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  username: e.target.value,
-                })
-              }
+              required
             />
           </FieldStyle>
 
