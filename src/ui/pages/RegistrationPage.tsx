@@ -1,43 +1,26 @@
 import styled from "@emotion/styled";
 import { Button } from "../components/Buttons";
 import { Page } from "./Page";
-import { FormEvent } from "react";
 import { Input } from "../components/Input";
+import {
+  ActionFunctionArgs,
+  Form,
+  redirect,
+} from "react-router-dom";
 
 type Data = {
   firstName: string;
   lastName: string;
   email: string;
   username: string;
-};
-
-const defaultData: Data = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  username: "",
+  name: string;
 };
 
 export const RegistrationPage = () => {
-  const handleSubmit = (
-    e: FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const contact = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
-      email: formData.get("email"),
-      username: formData.get("username"),
-    } as Data;
-
-    console.log("Submitted details: ", contact);
-  };
-
   return (
     <Page title="Registration">
       <div>
-        <form onSubmit={handleSubmit}>
+        <Form method="post">
           <FieldStyle>
             <label htmlFor="firstName">
               First name
@@ -71,12 +54,15 @@ export const RegistrationPage = () => {
               name="username"
               type="text"
               id="username"
-              required
             />
+          </FieldStyle>
+          <FieldStyle>
+            <label htmlFor="name">Name</label>
+            <Input name="name" type="text" id="name" />
           </FieldStyle>
 
           <Button type="submit">Register</Button>
-        </form>
+        </Form>
       </div>
     </Page>
   );
@@ -87,3 +73,20 @@ const FieldStyle = styled.div`
   flex-direction: column;
   margin-bottom: 8px;
 `;
+
+export async function registerAction({
+  request,
+}: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const contact = {
+    firstName: formData.get("firstName"),
+    lastName: formData.get("lastName"),
+    email: formData.get("email"),
+    username: formData.get("username"),
+    name: formData.get("name"),
+  } as Data;
+
+  console.log("Submitted details: ", contact);
+
+  return redirect(`/welcome`);
+}
