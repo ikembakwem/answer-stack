@@ -11,6 +11,7 @@ import { QuestionPage } from "./ui/pages/QuestionPage";
 import { lazy, Suspense } from "react";
 import styled from "@emotion/styled";
 import { RegistrationPage } from "./ui/pages/RegistrationPage";
+import { RegisterSuccessPage } from "./ui/components/RegisterSuccessPage";
 const AskPage = lazy(
   () => import("./ui/pages/AskPage")
 );
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/register", element: <RegistrationPage /> },
+  {
+    path: "/welcome/:firstName",
+    element: <RegisterSuccessPage />,
+  },
 ]);
 
 function App() {
