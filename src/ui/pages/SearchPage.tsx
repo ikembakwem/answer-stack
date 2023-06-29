@@ -5,7 +5,7 @@ import {
   QuestionData,
   searchQuestion,
 } from "../../QuestionsData";
-import { QuestionList } from "../components/QuestionList";
+import { QuestionList } from "@components/QuestionList";
 import styled from "@emotion/styled";
 
 export const SearchPage = () => {

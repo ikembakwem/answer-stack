@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PageTitle } from "../components/PageTitle";
+import { PageTitle } from "@components/PageTitle";
 import styled from "@emotion/styled";
 
 interface Props {

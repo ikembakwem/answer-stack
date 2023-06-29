@@ -2,12 +2,12 @@ import {
   getUnansweredQuestions,
   QuestionData,
 } from "../../QuestionsData";
-import { QuestionList } from "../components/QuestionList";
+import { QuestionList } from "@components/QuestionList";
 import { Page } from "./Page";
-import { PageTitle } from "../components/PageTitle";
+import { PageTitle } from "@components/PageTitle";
 import { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { Button } from "../components/Buttons";
+import { Button } from "@components/Buttons";
 import { useNavigate } from "react-router";
 
 export const HomePage: FC = () => {
