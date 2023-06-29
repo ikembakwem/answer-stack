@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Button } from "../components/Buttons";
 import { Page } from "./Page";
 import { useState, FormEvent } from "react";
+import { Input } from "../components/Input";
 
 type Data = {
   firstName: string;
@@ -36,9 +37,9 @@ export const RegistrationPage = () => {
             <label htmlFor="firstName">
               First name
             </label>
-            <input
+            <Input
               type="text"
-              id="name"
+              id="firstName"
               value={userData.firstName}
               onChange={(e) =>
                 setUserData({
@@ -48,9 +49,10 @@ export const RegistrationPage = () => {
               }
             />
           </FieldStyle>
+
           <FieldStyle>
             <label htmlFor="lastName">Last name</label>
-            <input
+            <Input
               type="text"
               id="lastName"
               value={userData.lastName}
@@ -64,7 +66,7 @@ export const RegistrationPage = () => {
           </FieldStyle>
           <FieldStyle>
             <label htmlFor="email">Email address</label>
-            <input
+            <Input
               type="email"
               id="email"
               value={userData.email}
@@ -78,7 +80,7 @@ export const RegistrationPage = () => {
           </FieldStyle>
           <FieldStyle>
             <label htmlFor="username">Username</label>
-            <input
+            <Input
               type="text"
               id="username"
               value={userData.username}
@@ -90,6 +92,7 @@ export const RegistrationPage = () => {
               }
             />
           </FieldStyle>
+
           <Button type="submit">Register</Button>
         </form>
       </div>
