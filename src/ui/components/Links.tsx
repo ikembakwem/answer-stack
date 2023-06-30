@@ -1,5 +1,3 @@
-import styled from "@emotion/styled";
-import { ReactNode } from "react";
 import {
   fontSize,
   fontfamily,
@@ -8,23 +6,43 @@ import {
   gray5,
 } from "../../Styles";
 import {
-  Link,
-  NavLink as RouterLink,
+  Link as RouterLink ,
+  NavLink as RouterNavLink,
 } from "react-router-dom";
+import styled from "@emotion/styled";
+import { ComponentProps, FC, ReactNode } from "react";
 
-interface NavLink3Props {
+interface LinkProps extends ComponentProps<"a"> {
+  children: ReactNode
+}
+
+interface NavLinkProps {
   children?: ReactNode;
   to: string;
 }
 
+export const Link:FC<LinkProps> = ({children, ...props}) =>  {
+  return <StyledLink {...props}>{children}</StyledLink>
+}
+
+const StyledLink = styled.a`
+  text-decoration: none; 
+  color: #0b48cb;
+  cursor: pointer;
+
+  :hover {
+    opacity: .8;
+  }
+`;
+
 export const NavLink = ({
   children,
   to,
-}: NavLink3Props) => (
+}: NavLinkProps) => (
   <Styles to={to}>{children}</Styles>
 );
 
-const Styles = styled(RouterLink)`
+const Styles = styled(RouterNavLink)`
   font-family: ${fontfamily};
   font-size: ${fontSize};
   background-color: transparent;
@@ -48,8 +66,9 @@ const Styles = styled(RouterLink)`
   }
 `;
 
-export const LogoLink = styled(Link)`
+export const LogoLink = styled(RouterLink)`
   font-size: 24px;
   font-weight: bold;
   color: ${gray1};
 `;
+
