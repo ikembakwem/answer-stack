@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { Button } from "@components/Buttons";
+import { Button } from "../components/Buttons";
 import { Page } from "./Page";
-import { Input } from "@components/Input";
+import { Input } from "../components/Input";
 import {
   ActionFunctionArgs,
   Form,

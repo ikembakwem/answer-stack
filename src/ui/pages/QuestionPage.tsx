@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { AuthorAndTime, gray6 } from "../../Styles";
-import { AnswerList } from "@components/AnswerList";
+import { AnswerList } from "../components/AnswerList";
 
 export const QuestionPage = () => {
   const [question, setQuestion] =
