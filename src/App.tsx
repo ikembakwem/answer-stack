@@ -10,14 +10,9 @@ import { ErrorPage } from "./ui/pages/ErrorPage";
 import { QuestionPage } from "./ui/pages/QuestionPage";
 import { lazy, Suspense } from "react";
 import styled from "@emotion/styled";
-import {
-  registerAction,
-  RegistrationPage,
-} from "./ui/pages/RegistrationPage";
+import { RegistrationPage } from "./ui/pages/RegistrationPage";
 import { RegisterSuccessPage } from "./ui/pages/RegisterSuccessPage";
-const AskPage = lazy(
-  () => import("./ui/pages/AskPage")
-);
+const AskPage = lazy(() => import("./ui/pages/AskPage"));
 
 const Loading = styled.div`
   margin-top: 100px;
@@ -35,7 +30,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegistrationPage />,
-        action: registerAction,
       },
 
       {
