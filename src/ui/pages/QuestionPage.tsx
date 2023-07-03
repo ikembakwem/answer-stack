@@ -6,9 +6,18 @@ import {
 } from "../../QuestionsData";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { AuthorAndTime, gray6 } from "../../Styles";
+import {
+  AuthorAndTime,
+  FieldContainer,
+  FieldLabel,
+  FieldTextArea,
+  Fieldset,
+  FormButtonContainer,
+  gray6,
+} from "../../Styles";
 import { AnswerList } from "../components/AnswerList";
 import { useForm } from "react-hook-form";
+import { Button } from "../components/Buttons";
 
 type FormData = {
   content: string;
@@ -50,7 +59,24 @@ export const QuestionPage = () => {
               </AuthorAndTime>
             </PaddingX>
             <AnswerList data={question.answers} />
-            <form></form>
+            <AnswerForm>
+              <Fieldset>
+                <FieldContainer>
+                  <FieldLabel htmlFor="content">
+                    Your Answer
+                  </FieldLabel>
+                  <FieldTextArea
+                    id="content"
+                    {...register("content")}
+                  />
+                </FieldContainer>
+                <FormButtonContainer>
+                  <Button type="submit">
+                    Submit Your Answer
+                  </Button>
+                </FormButtonContainer>
+              </Fieldset>
+            </AnswerForm>
           </>
         )}
       </Container>
@@ -79,4 +105,8 @@ const Title = styled.div`
   font-size: 19px;
   font-weight: bold;
   margin: 10px 0px 5px;
+`;
+
+const AnswerForm = styled.form`
+  margin-top: 20px;
 `;
