@@ -17,7 +17,7 @@ export const SearchBox = forwardRef<
 const InputStyles = styled.input`
   font-family: ${fontfamily};
   font-size: ${fontSize};
-  padding: 8px 10px;
+  padding: 8px 12px 8px 24px;
   border: 1px solid ${gray5};
   border-radius: 999px;
   color: ${gray2};
