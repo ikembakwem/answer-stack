@@ -4,23 +4,22 @@ import { gray5 } from "../../Styles";
 import { LogoLink, NavLink } from "./Links";
 import { SearchBox } from "./SearchBox";
 import { useSearchParams } from "react-router-dom";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
+import { useForm } from "react-hook-form";
+
+type FormData = {
+  search: string;
+};
 
 export const Header = () => {
+  const { register } = useForm<FormData>();
   const [searchParams] = useSearchParams();
   const criteria = searchParams.get("criteria") || "";
-  const [search, setSearch] = useState(criteria);
-
-  const handleSearchInput = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSearch(e.currentTarget.value);
-  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(search);
   };
+
   return (
     <Wrapper>
       <LogoLink to="/">Answer Stack</LogoLink>
@@ -29,9 +28,8 @@ export const Header = () => {
           <SearchBox
             type="text"
             placeholder="Search..."
-            name="search"
-            onChange={handleSearchInput}
-            value={search}
+            defaultValue={criteria}
+            {...register("search")}
           />
         </form>
       </SearchContainer>
