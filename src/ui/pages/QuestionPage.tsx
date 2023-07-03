@@ -8,16 +8,21 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { AuthorAndTime, gray6 } from "../../Styles";
 import { AnswerList } from "../components/AnswerList";
+import { useForm } from "react-hook-form";
+
+type FormData = {
+  content: string;
+};
 
 export const QuestionPage = () => {
   const [question, setQuestion] =
     useState<QuestionData | null>(null);
   const { questionId } = useParams();
 
+  const { register } = useForm<FormData>();
+
   useEffect(() => {
-    const doGetQuestion = async (
-      questionId: number
-    ) => {
+    const doGetQuestion = async (questionId: number) => {
       const res = await getQuestion(questionId);
       setQuestion(res);
     };
@@ -45,6 +50,7 @@ export const QuestionPage = () => {
               </AuthorAndTime>
             </PaddingX>
             <AnswerList data={question.answers} />
+            <form></form>
           </>
         )}
       </Container>
