@@ -42,7 +42,7 @@ export const AuthorAndTime = styled.div`
   color: ${gray3};
 `;
 
-export const FieldSet = styled.fieldset`
+export const Fieldset = styled.fieldset`
   margin: 10px auto 0;
   padding: 30px;
   width: 350px;

@@ -4,7 +4,7 @@ import {
   FieldContainer,
   FieldInput,
   FieldLabel,
-  FieldSet,
+  Fieldset,
   FieldTextArea,
   FormButtonContainer,
 } from "../../Styles";
@@ -20,7 +20,7 @@ export const AskPage = () => {
   return (
     <Page title="Ask Page">
       <form>
-        <FieldSet>
+        <Fieldset>
           <FieldContainer>
             <FieldLabel htmlFor="title">Title</FieldLabel>
             <FieldInput
@@ -43,7 +43,7 @@ export const AskPage = () => {
               Submit Your Question
             </Button>
           </FormButtonContainer>
-        </FieldSet>
+        </Fieldset>
       </form>
     </Page>
   );
