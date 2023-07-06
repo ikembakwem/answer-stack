@@ -3,7 +3,10 @@ import { UserIcon } from "./Icon";
 import { gray5 } from "../../Styles";
 import { LogoLink, NavLink } from "./Links";
 import { SearchBox } from "./SearchBox";
-import { useSearchParams } from "react-router-dom";
+import {
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { FormEvent } from "react";
 import { useForm } from "react-hook-form";
 
@@ -12,19 +15,20 @@ type FormData = {
 };
 
 export const Header = () => {
-  const { register } = useForm<FormData>();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<FormData>();
   const [searchParams] = useSearchParams();
   const criteria = searchParams.get("criteria") || "";
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const submitForm = ({ search }: FormData) => {
+    navigate(`search?criteria=${search}`);
   };
 
   return (
     <Wrapper>
       <LogoLink to="/">Answer Stack</LogoLink>
       <SearchContainer>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitForm)}>
           <SearchBox
             type="text"
             placeholder="Search..."
