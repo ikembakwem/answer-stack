@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import {
   QuestionData,
   getQuestion,
+  postAnswer,
 } from "../../QuestionsData";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
@@ -14,6 +15,7 @@ import {
   FieldTextArea,
   Fieldset,
   FormButtonContainer,
+  SubmissionSuccess,
   gray6,
 } from "../../Styles";
 import { AnswerList } from "../components/AnswerList";
@@ -25,13 +27,15 @@ type FormData = {
 };
 
 export const QuestionPage = () => {
+  const [successfullySubmitted, setSuccessfullySubmitted] =
+    useState(false);
   const [question, setQuestion] =
     useState<QuestionData | null>(null);
   const { questionId } = useParams();
-
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    handleSubmit,
   } = useForm<FormData>({ mode: "onBlur" });
 
   useEffect(() => {
@@ -44,6 +48,17 @@ export const QuestionPage = () => {
       doGetQuestion(Number(questionId));
     }
   }, [questionId]);
+
+  const submitForm = async (data: FormData) => {
+    const result = await postAnswer({
+      questionId: question!.questionId,
+      content: data.content,
+      userName: "Bobby",
+      created: new Date(),
+    });
+
+    setSuccessfullySubmitted(result ? true : false);
+  };
 
   return (
     <Page>
@@ -63,8 +78,12 @@ export const QuestionPage = () => {
               </AuthorAndTime>
             </PaddingX>
             <AnswerList data={question.answers} />
-            <AnswerForm>
-              <Fieldset>
+            <AnswerForm onSubmit={handleSubmit(submitForm)}>
+              <Fieldset
+                disabled={
+                  isSubmitting || successfullySubmitted
+                }
+              >
                 <FieldContainer>
                   <FieldLabel htmlFor="content">
                     Your Answer
@@ -95,6 +114,11 @@ export const QuestionPage = () => {
                     Submit Your Answer
                   </Button>
                 </FormButtonContainer>
+                {successfullySubmitted && (
+                  <SubmissionSuccess>
+                    Your answer has been submitted
+                  </SubmissionSuccess>
+                )}
               </Fieldset>
             </AnswerForm>
           </>
