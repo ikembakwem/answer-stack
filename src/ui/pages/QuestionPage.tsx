@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import {
   AuthorAndTime,
   FieldContainer,
+  FieldError,
   FieldLabel,
   FieldTextArea,
   Fieldset,
@@ -28,7 +29,10 @@ export const QuestionPage = () => {
     useState<QuestionData | null>(null);
   const { questionId } = useParams();
 
-  const { register } = useForm<FormData>();
+  const {
+    register,
+    formState: { errors },
+  } = useForm<FormData>({ mode: "onBlur" });
 
   useEffect(() => {
     const doGetQuestion = async (questionId: number) => {
@@ -67,8 +71,24 @@ export const QuestionPage = () => {
                   </FieldLabel>
                   <FieldTextArea
                     id="content"
-                    {...register("content")}
+                    {...register("content", {
+                      required: true,
+                      minLength: 50,
+                    })}
                   />
+                  {errors.content &&
+                    errors.content.type === "required" && (
+                      <FieldError>
+                        You must provide an answer
+                      </FieldError>
+                    )}
+                  {errors.content &&
+                    errors.content.type === "minLength" && (
+                      <FieldError>
+                        Your answer must be 50 characters or
+                        more
+                      </FieldError>
+                    )}
                 </FieldContainer>
                 <FormButtonContainer>
                   <Button type="submit">
