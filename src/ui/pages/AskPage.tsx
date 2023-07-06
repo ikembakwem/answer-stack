@@ -8,8 +8,11 @@ import {
   Fieldset,
   FieldTextArea,
   FormButtonContainer,
+  SubmissionSuccess,
 } from "../../Styles";
 import { Button } from "../components/Buttons";
+import { useState } from "react";
+import { postQuestion } from "../../QuestionsData";
 
 type FormData = {
   title: string;
@@ -17,16 +20,33 @@ type FormData = {
 };
 
 export const AskPage = () => {
+  const [successfullySubmitted, setSuccessfullySubmitted] =
+    useState(false);
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    handleSubmit,
   } = useForm<FormData>({
     mode: "onBlur",
   });
+
+  const submitForm = async (data: FormData) => {
+    const result = await postQuestion({
+      title: data.title,
+      content: data.content,
+      userName: "Bob",
+      created: new Date(),
+    });
+
+    setSuccessfullySubmitted(result ? true : false);
+  };
+
   return (
     <Page title="Ask Page">
-      <form>
-        <Fieldset>
+      <form onSubmit={handleSubmit(submitForm)}>
+        <Fieldset
+          disabled={isSubmitting || successfullySubmitted}
+        >
           <FieldContainer>
             <FieldLabel htmlFor="title">Title</FieldLabel>
             <FieldInput
@@ -81,6 +101,11 @@ export const AskPage = () => {
               Submit Your Question
             </Button>
           </FormButtonContainer>
+          {successfullySubmitted && (
+            <SubmissionSuccess>
+              Your question was successfully posted
+            </SubmissionSuccess>
+          )}
         </Fieldset>
       </form>
     </Page>
