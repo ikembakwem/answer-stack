@@ -21,6 +21,13 @@ export interface PostQuestionData {
   created: Date;
 }
 
+export interface PostAnswerData {
+  questionId: number;
+  content: string;
+  userName: string;
+  created: Date;
+}
+
 const questions: QuestionData[] = [
   {
     questionId: 1,
@@ -109,4 +116,22 @@ export const postQuestion = async (
   };
   questions.push(newQuestion);
   return newQuestion;
+};
+
+export const postAnswer = async (
+  answer: PostAnswerData
+): Promise<AnswerData | undefined> => {
+  await wait(500);
+  const question = questions.filter(
+    (q) => q.questionId === answer.questionId
+  )[0];
+
+  const answerInQuestion: AnswerData = {
+    answerId: 99,
+    ...answer,
+  };
+
+  question.answers.push(answerInQuestion);
+
+  return answerInQuestion;
 };
