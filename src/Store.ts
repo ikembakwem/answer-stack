@@ -37,9 +37,10 @@ export const gotUnansweredQuestionsAction = (
   } as const);
 
 export const GETTINGQUESTION = "GettingQuestion";
-export const gettingQuestionAction = () => ({
-  type: GETTINGQUESTION,
-});
+export const gettingQuestionAction = () =>
+  ({
+    type: GETTINGQUESTION,
+  } as const);
 
 export const GOTQUESTION = "GotQuestion";
 export const gotQuestionAction = (
@@ -51,14 +52,76 @@ export const gotQuestionAction = (
   } as const);
 
 export const SEARCHINGQUESTIONS = "SearchingQuestions";
-export const searchingQuestionsAction = () => ({
-  type: SEARCHINGQUESTIONS,
-});
+export const searchingQuestionsAction = () =>
+  ({
+    type: SEARCHINGQUESTIONS,
+  } as const);
 
 export const SEARCHEDQUESTIONS = "SearchedQuestions";
 export const searchedQuestionsAction = (
   questions: QuestionData[]
-) => ({
-  type: SEARCHEDQUESTIONS,
-  questions,
-});
+) =>
+  ({
+    type: SEARCHEDQUESTIONS,
+    questions,
+  } as const);
+
+// Action types
+type QuestionsActions =
+  | ReturnType<typeof gettingUnansweredQuestionsAction>
+  | ReturnType<typeof gotUnansweredQuestionsAction>
+  | ReturnType<typeof gettingQuestionAction>
+  | ReturnType<typeof gotQuestionAction>
+  | ReturnType<typeof searchingQuestionsAction>
+  | ReturnType<typeof searchedQuestionsAction>;
+
+// Reducer function
+const questionsReducer = (
+  state = initialQuestionState,
+  action: QuestionsActions
+) => {
+  switch (action.type) {
+    case GETTINGUNANSWEREDQUESTIONS: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case GOTUNANSWEREDQUESTIONS: {
+      return {
+        ...state,
+        unanswered: action.questions,
+        loading: false,
+      };
+    }
+    case GETTINGQUESTION: {
+      return {
+        ...state,
+        viewing: null,
+        loading: true,
+      };
+    }
+    case GOTQUESTION: {
+      return {
+        ...state,
+        viewing: action.question,
+        loading: false,
+      };
+    }
+    case SEARCHINGQUESTIONS: {
+      return {
+        ...state,
+        searched: [],
+        loading: true,
+      };
+    }
+    case SEARCHEDQUESTIONS: {
+      return {
+        ...state,
+        searched: action.questions,
+        loading: false,
+      };
+    }
+  }
+  return state;
+};
