@@ -1,6 +1,6 @@
 import { Page } from "./Page";
 import { useParams } from "react-router";
-import { QuestionData, getQuestion, postAnswer } from "../../QuestionsData";
+import { getQuestion, postAnswer } from "../../QuestionsData";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import {
