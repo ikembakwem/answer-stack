@@ -1,44 +1,32 @@
-import {
-  fontSize,
-  fontfamily,
-  gray1,
-  gray2,
-  gray5,
-} from "../../Styles";
-import {
-  Link as RouterLink ,
-  NavLink as RouterNavLink,
-} from "react-router-dom";
+import { fontSize, fontfamily, gray1, gray2, gray5 } from "../../Styles";
+import { Link as RouterLink, NavLink as RouterNavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 import { ComponentProps, FC, ReactNode } from "react";
-
-interface LinkProps extends ComponentProps<"a"> {
-  children: ReactNode
-}
 
 interface NavLinkProps {
   children?: ReactNode;
   to: string;
 }
 
-export const Link:FC<LinkProps> = ({children, ...props}) =>  {
-  return <StyledLink {...props}>{children}</StyledLink>
+interface LinkProps extends ComponentProps<"a"> {
+  children: ReactNode;
 }
 
+export const Link: FC<LinkProps> = ({ children, ...props }) => {
+  return <StyledLink {...props}>{children}</StyledLink>;
+};
+
 const StyledLink = styled.a`
-  text-decoration: none; 
+  text-decoration: none;
   color: #0b48cb;
   cursor: pointer;
 
   :hover {
-    opacity: .8;
+    opacity: 0.8;
   }
 `;
 
-export const NavLink = ({
-  children,
-  to,
-}: NavLinkProps) => (
+export const NavLink = ({ children, to }: NavLinkProps) => (
   <Styles to={to}>{children}</Styles>
 );
 
@@ -71,4 +59,3 @@ export const LogoLink = styled(RouterLink)`
   font-weight: bold;
   color: ${gray1};
 `;
-
