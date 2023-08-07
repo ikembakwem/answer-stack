@@ -1,10 +1,6 @@
 import { Page } from "./Page";
 import { useParams } from "react-router";
-import {
-  QuestionData,
-  getQuestion,
-  postAnswer,
-} from "../../QuestionsData";
+import { QuestionData, getQuestion, postAnswer } from "../../QuestionsData";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import {
@@ -21,16 +17,23 @@ import {
 import { AnswerList } from "../components/AnswerList";
 import { useForm } from "react-hook-form";
 import { Button } from "../components/Buttons";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import {
+  gettingQuestionAction,
+  gotQuestionAction,
+} from "../../store/questionSlice";
 
 type FormData = {
   content: string;
 };
 
 export const QuestionPage = () => {
-  const [successfullySubmitted, setSuccessfullySubmitted] =
-    useState(false);
-  const [question, setQuestion] =
-    useState<QuestionData | null>(null);
+  const dispatch = useDispatch();
+  const question = useSelector((state: RootState) => state.questions.viewing);
+
+  const [successfullySubmitted, setSuccessfullySubmitted] = useState(false);
+
   const { questionId } = useParams();
   const {
     register,
@@ -40,8 +43,10 @@ export const QuestionPage = () => {
 
   useEffect(() => {
     const doGetQuestion = async (questionId: number) => {
+      dispatch(gettingQuestionAction());
+
       const res = await getQuestion(questionId);
-      setQuestion(res);
+      dispatch(gotQuestionAction(res));
     };
 
     if (questionId) {
@@ -63,9 +68,7 @@ export const QuestionPage = () => {
   return (
     <Page>
       <Container>
-        <Title>
-          {question === null ? "" : question.title}
-        </Title>
+        <Title>{question === null ? "" : question.title}</Title>
 
         {question !== null && (
           <>
@@ -79,15 +82,9 @@ export const QuestionPage = () => {
             </PaddingX>
             <AnswerList data={question.answers} />
             <AnswerForm onSubmit={handleSubmit(submitForm)}>
-              <Fieldset
-                disabled={
-                  isSubmitting || successfullySubmitted
-                }
-              >
+              <Fieldset disabled={isSubmitting || successfullySubmitted}>
                 <FieldContainer>
-                  <FieldLabel htmlFor="content">
-                    Your Answer
-                  </FieldLabel>
+                  <FieldLabel htmlFor="content">Your Answer</FieldLabel>
                   <FieldTextArea
                     id="content"
                     {...register("content", {
@@ -95,24 +92,17 @@ export const QuestionPage = () => {
                       minLength: 50,
                     })}
                   />
-                  {errors.content &&
-                    errors.content.type === "required" && (
-                      <FieldError>
-                        You must provide an answer
-                      </FieldError>
-                    )}
-                  {errors.content &&
-                    errors.content.type === "minLength" && (
-                      <FieldError>
-                        Your answer must be 50 characters or
-                        more
-                      </FieldError>
-                    )}
+                  {errors.content && errors.content.type === "required" && (
+                    <FieldError>You must provide an answer</FieldError>
+                  )}
+                  {errors.content && errors.content.type === "minLength" && (
+                    <FieldError>
+                      Your answer must be 50 characters or more
+                    </FieldError>
+                  )}
                 </FieldContainer>
                 <FormButtonContainer>
-                  <Button type="submit">
-                    Submit Your Answer
-                  </Button>
+                  <Button type="submit">Submit Your Answer</Button>
                 </FormButtonContainer>
                 {successfullySubmitted && (
                   <SubmissionSuccess>
